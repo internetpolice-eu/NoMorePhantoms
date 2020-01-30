@@ -1,4 +1,4 @@
-package events;
+package com.cdejong.nomorephantoms.events;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -24,7 +24,7 @@ public class onPhantomSpawn implements Listener {
             Collection<Player> nearbyPlayers = event.getLocation().getNearbyPlayers(200.0);
             for (Player player : nearbyPlayers) {
                 if (player.hasPermission("nomorephantoms.nospawns")) {
-                    plugin.getLogger().info("CANCELLED EVENT: PHANTOM | " + event.getEntity().getEntitySpawnReason());
+                    plugin.getLogger().info("CANCELLED EVENT: EntitySpawnEvent nearby: " + player.getName());
                     event.setCancelled(true);
                 }
             }
