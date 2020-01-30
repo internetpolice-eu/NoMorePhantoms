@@ -1,0 +1,4 @@
+name: NoMorePhantoms
+version: ${project.version}
+main: com.cdejong.nomorephantoms.NoMorePhantoms
+api-version: 1.13
