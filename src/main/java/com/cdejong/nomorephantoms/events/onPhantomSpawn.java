@@ -19,15 +19,17 @@ public class onPhantomSpawn implements Listener {
     }
 
     @EventHandler
-    public void onPhantomSpawn(EntitySpawnEvent event) {
-        if ( event.getEntityType() == EntityType.PHANTOM && event.getEntity().getEntitySpawnReason() == CreatureSpawnEvent.SpawnReason.NATURAL) {
-            Collection<Player> nearbyPlayers = event.getLocation().getNearbyPlayers(200.0);
-            for (Player player : nearbyPlayers) {
-                if (player.hasPermission("nomorephantoms.nospawns")) {
-                    plugin.getLogger().info("CANCELLED EVENT: EntitySpawnEvent nearby: " + player.getName());
-                    event.setCancelled(true);
-                }
+    public void onPhantomSpawnEvent(EntitySpawnEvent event) {
+
+        if ( event.getEntityType() != EntityType.PHANTOM || event.getEntity().getEntitySpawnReason() != CreatureSpawnEvent.SpawnReason.NATURAL) { return; }
+
+        Collection<Player> nearbyPlayers = event.getLocation().getNearbyPlayers(200.0);
+        for (Player player : nearbyPlayers) {
+            if (player.hasPermission("nomorephantoms.nospawns")) {
+                plugin.getLogger().info("CANCELLED EVENT: EntitySpawnEvent nearby: " + player.getName());
+                event.setCancelled(true);
             }
         }
+
     }
 }
