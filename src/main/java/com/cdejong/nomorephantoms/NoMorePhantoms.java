@@ -1,6 +1,6 @@
 package com.cdejong.nomorephantoms;
 
-import events.onPhantomSpawn;
+import com.cdejong.nomorephantoms.events.onPhantomSpawn;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
