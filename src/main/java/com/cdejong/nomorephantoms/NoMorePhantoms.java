@@ -1,19 +1,11 @@
 package com.cdejong.nomorephantoms;
 
-import com.cdejong.nomorephantoms.events.onPhantomSpawn;
-import org.bukkit.Bukkit;
+import com.cdejong.nomorephantoms.events.PhantomSpawnEvents;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class NoMorePhantoms extends JavaPlugin {
-
+public class NoMorePhantoms extends JavaPlugin {
     @Override
     public void onEnable() {
-        Bukkit.getPluginManager().registerEvents(new onPhantomSpawn(this), this);
-        Bukkit.getLogger().info("Starting...");
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+        getServer().getPluginManager().registerEvents(new PhantomSpawnEvents(), this);
     }
 }

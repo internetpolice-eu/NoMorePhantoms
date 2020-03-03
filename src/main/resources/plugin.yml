@@ -1,4 +1,8 @@
 name: NoMorePhantoms
 version: ${project.version}
 main: com.cdejong.nomorephantoms.NoMorePhantoms
-api-version: 1.13
+api-version: 1.15
+permissions:
+  nomorephantoms.nospawns:
+    description: Phantoms spawns near players having this permission set are cancelled.
+    default: op
