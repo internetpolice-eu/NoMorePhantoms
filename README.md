@@ -9,6 +9,6 @@ LuckyPerms 4.4
 `nomorephantoms.toggle.others` **:** Players with this permission can toggle, enable and disable other players phantom spawns.
 
 ### Commands:
-`/phantom \[username] \[enable|disable]`
+`/phantom [username] [enable|disable]`
 
 
