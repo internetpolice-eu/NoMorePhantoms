@@ -4,7 +4,7 @@
 
     <groupId>com.cdejong</groupId>
     <artifactId>NoMorePhantoms</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -26,6 +26,14 @@
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>18.0.0</version>
+        </dependency>
+
+        <!-- LuckPerms -->
+        <dependency>
+            <groupId>me.lucko.luckperms</groupId>
+            <artifactId>luckperms-api</artifactId>
+            <version>4.4</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

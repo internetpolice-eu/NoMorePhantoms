@@ -2,7 +2,15 @@ name: NoMorePhantoms
 version: ${project.version}
 main: com.cdejong.nomorephantoms.NoMorePhantoms
 api-version: 1.15
+depend: [LuckPerms]
 permissions:
-  nomorephantoms.nospawns:
-    description: Phantoms spawns near players having this permission set are cancelled.
-    default: op
+  nomorephantoms.toggle:
+    description: Players With this Permission can Toggle, Enable and Disable there own Phantom spawns.
+    default: false
+  nomorephantoms.toggle.others:
+    description: Players With this Permission can Toggle, Enable and Disable other Players Phantom spawns.
+    default: false
+commands:
+  phantom:
+    description: Toggle, Enable and Disable Phantom spawns.
+    usage: "Usage: /phantom [enable|disable]"
