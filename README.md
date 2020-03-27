@@ -1,14 +1,14 @@
 # NoMorePhantoms
 Toggle, Enable and Disable Phantom spawns for players
 
-###### Required:
+##### Required:
 LuckyPerms 4.4
 
-###### Permissions:
+##### Permissions:
 *nomorephantoms.toggle* **:** Players with this permission can toggle, enable or disable there own phantom spawns.
 *nomorephantoms.toggle.others* **:** Players with this permission can toggle, enable and disable other players phantom spawns.
 
-###### Commands:
+##### Commands:
 */phantom \[username] \[enable|disable]*
 
 
