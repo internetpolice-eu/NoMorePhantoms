@@ -13,4 +13,4 @@ permissions:
 commands:
   phantom:
     description: Toggle, Enable and Disable Phantom spawns.
-    usage: "Usage: /phantom [enable|disable]"
+    usage: "Usage: /phantom [username] [enable|disable]"

@@ -34,7 +34,7 @@ public class LuckPermsHook extends PluginHook {
 
         if (user != null) {
             Contexts ctx = api.getContextsForPlayer(player);
-            String metaValue = user.getCachedData().getMetaData(ctx).getMeta().getOrDefault("phantom-spawns", "false");
+            String metaValue = user.getCachedData().getMetaData(ctx).getMeta().getOrDefault("phantom-spawns", "true");
 
             try {
                 result = Boolean.valueOf(metaValue);
