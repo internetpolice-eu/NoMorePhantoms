@@ -2,7 +2,7 @@
 Toggle, Enable and Disable Phantom spawns for players
 
 ### Required:
-LuckyPerms 5
+LuckyPerms 5  
 Papermc
 
 ### Permissions:
