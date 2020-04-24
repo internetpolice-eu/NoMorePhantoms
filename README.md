@@ -2,7 +2,8 @@
 Toggle, Enable and Disable Phantom spawns for players
 
 ### Required:
-LuckyPerms 4.4
+LuckyPerms 5
+Papermc
 
 ### Permissions:
 `nomorephantoms.toggle` **:** Players with this permission can toggle, enable or disable there own phantom spawns.
