@@ -1,16 +1,17 @@
 package com.cdejong.nomorephantoms.hooks;
 
 import com.cdejong.nomorephantoms.NoMorePhantoms;
-import me.lucko.luckperms.api.Contexts;
-import me.lucko.luckperms.api.LuckPermsApi;
-import me.lucko.luckperms.api.Node;
-import me.lucko.luckperms.api.User;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.model.data.DataMutateResult;
+import net.luckperms.api.model.user.User;
+import net.luckperms.api.node.types.MetaNode;
+import net.luckperms.api.query.QueryOptions;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.jetbrains.annotations.NotNull;
 
 public class LuckPermsHook extends PluginHook {
-    private LuckPermsApi api;
+    private LuckPerms api;
 
     public LuckPermsHook(@NotNull NoMorePhantoms plugin) {
         super("LuckPerms", plugin);
@@ -18,7 +19,7 @@ public class LuckPermsHook extends PluginHook {
 
     @Override
     public boolean onHook() {
-        RegisteredServiceProvider<LuckPermsApi> rsp = plugin.getServer().getServicesManager().getRegistration(LuckPermsApi.class);
+        RegisteredServiceProvider<LuckPerms> rsp = plugin.getServer().getServicesManager().getRegistration(LuckPerms.class);
         if (rsp == null) {
             plugin.getLogger().warning("Failed to get LuckPermsApi rsp.");
             return false;
@@ -30,29 +31,29 @@ public class LuckPermsHook extends PluginHook {
 
     public boolean getUserPhantomState(Player player) {
         boolean result = false;
-        User user = api.getUser(player.getUniqueId());
+
+        QueryOptions options = api.getContextManager().getQueryOptions(player);
+        User user = api.getUserManager().getUser(player.getUniqueId());
 
         if (user != null) {
-            Contexts ctx = api.getContextsForPlayer(player);
-            String metaValue = user.getCachedData().getMetaData(ctx).getMeta().getOrDefault("phantom-spawns", "true");
-
-            try {
-                result = Boolean.valueOf(metaValue);
-            } catch (Exception ignored) {}
+            String metaValue = user.getCachedData().getMetaData(options).getMetaValue("phantom-spawns");
+            if (metaValue != null) {
+                result = Boolean.parseBoolean(metaValue);
+            }
         }
 
         return result;
     }
 
     public void setUserPhantomState(Player player, boolean state) {
-        User user = api.getUser(player.getUniqueId());
-        if (user != null) {
-            Node oldNode = api.getNodeFactory().makeMetaNode("phantom-spawns",
-                    String.valueOf(getUserPhantomState(player))).build();
-            Node newNode = api.getNodeFactory().makeMetaNode("phantom-spawns", Boolean.toString(state)).build();
+        User user = api.getUserManager().getUser(player.getUniqueId());
 
-            user.unsetPermission(oldNode);
-            user.setPermission(newNode);
+        if (user != null) {
+            MetaNode oldNode = MetaNode.builder("phantom-spawns", Boolean.toString(getUserPhantomState(player))).build();
+            MetaNode newNode = MetaNode.builder("phantom-spawns", Boolean.toString(state)).build();
+
+            DataMutateResult oldResult = user.data().remove(oldNode);
+            DataMutateResult newResult = user.data().add(newNode);
             api.getUserManager().saveUser(user);
         }
     }
