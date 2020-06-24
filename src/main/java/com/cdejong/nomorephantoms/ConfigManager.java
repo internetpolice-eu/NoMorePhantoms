@@ -34,6 +34,7 @@ public class ConfigManager {
         }
 
         fileConfig = YamlConfiguration.loadConfiguration(file);
+        saveConfig();
     }
 
     public FileConfiguration getConfig() {
