@@ -48,6 +48,7 @@ public class NoMorePhantoms extends JavaPlugin {
             LuckPermsHook lpHook = (LuckPermsHook) hook.get();
 
             lpHook.setUserPhantomState(player, isNoPhantomSpawns);
+            return;
         }
 
         // yaml (default)
