@@ -9,6 +9,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
+import java.util.List;
 
 
 public class DisablePhantomSpawnsCommand implements CommandExecutor {
@@ -31,12 +33,12 @@ public class DisablePhantomSpawnsCommand implements CommandExecutor {
             // /phantom <enable|disable|<username>>
             if (args.length == 1) {
 
-                if (args[0].equalsIgnoreCase("enable") || args[0].equalsIgnoreCase("enabled")) {
+                if (equalString(args[0], Arrays.asList("enabled", "enable", "on"))) {
                     plugin.setPhantomSpawnState((Player) sender, sender, true);
                     return true;
                 }
 
-                if (args[0].equalsIgnoreCase("disable") || args[0].equalsIgnoreCase("disabled")) {
+                if (equalString(args[0], Arrays.asList("disabled", "disable", "off"))) {
                     plugin.setPhantomSpawnState((Player) sender, sender,false);
                     return true;
                 }
@@ -63,12 +65,12 @@ public class DisablePhantomSpawnsCommand implements CommandExecutor {
                     return true;
                 }
 
-                if (args[1].equalsIgnoreCase("enable") || args[1].equalsIgnoreCase("enabled")) {
+                if (equalString(args[1], Arrays.asList("enabled", "enable", "on"))) {
                     plugin.setPhantomSpawnState(player, sender, true);
                     return true;
                 }
 
-                if (args[1].equalsIgnoreCase("disable") || args[0].equalsIgnoreCase("disabled")) {
+                if (equalString(args[1], Arrays.asList("disabled", "disable", "off"))) {
                     plugin.setPhantomSpawnState(player, sender,false);
                     return true;
                 }
@@ -98,12 +100,12 @@ public class DisablePhantomSpawnsCommand implements CommandExecutor {
 
             if (args.length >= 2) {
 
-                if (args[1].equalsIgnoreCase("enable") || args[1].equalsIgnoreCase("enabled")) {
+                if (equalString(args[1], Arrays.asList("enabled", "enable", "on"))) {
                     plugin.setPhantomSpawnState(player, sender, true);
                     return true;
                 }
 
-                if (args[1].equalsIgnoreCase("disable") || args[0].equalsIgnoreCase("disabled")) {
+                if (equalString(args[1], Arrays.asList("disabled", "disable", "off"))) {
                     plugin.setPhantomSpawnState(player, sender,false);
                     return true;
                 }
@@ -118,5 +120,18 @@ public class DisablePhantomSpawnsCommand implements CommandExecutor {
         }
         sender.sendMessage("§cError: §4null");
         return true;
+    }
+
+    private boolean equalString(String check, List<String> words) {
+        boolean result = false;
+
+        for (String word : words) {
+            if (check.equalsIgnoreCase(word)) {
+                result = true;
+                break;
+            }
+        }
+
+        return result;
     }
 }

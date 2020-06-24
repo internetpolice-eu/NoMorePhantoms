@@ -1,0 +1,9 @@
+#store phantom states in "luckyperms" or "yaml"
+store-in: yaml
+stop-all-spawns: false
+stop-world-spawns:
+  - phantomtestworldname
+
+
+
+

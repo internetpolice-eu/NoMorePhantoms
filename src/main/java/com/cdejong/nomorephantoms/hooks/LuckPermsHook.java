@@ -29,14 +29,14 @@ public class LuckPermsHook extends PluginHook {
         return true;
     }
 
-    public boolean getUserPhantomState(Player player) {
+    public boolean isNoPhantomSpawnsEnabled(Player player) {
         boolean result = false;
 
         QueryOptions options = api.getContextManager().getQueryOptions(player);
         User user = api.getUserManager().getUser(player.getUniqueId());
 
         if (user != null) {
-            String metaValue = user.getCachedData().getMetaData(options).getMetaValue("phantom-spawns");
+            String metaValue = user.getCachedData().getMetaData(options).getMetaValue("no-phantom-spawns");
             if (metaValue != null) {
                 result = Boolean.parseBoolean(metaValue);
             }
@@ -49,8 +49,8 @@ public class LuckPermsHook extends PluginHook {
         User user = api.getUserManager().getUser(player.getUniqueId());
 
         if (user != null) {
-            MetaNode oldNode = MetaNode.builder("phantom-spawns", Boolean.toString(getUserPhantomState(player))).build();
-            MetaNode newNode = MetaNode.builder("phantom-spawns", Boolean.toString(state)).build();
+            MetaNode oldNode = MetaNode.builder("no-phantom-spawns", Boolean.toString(isNoPhantomSpawnsEnabled(player))).build();
+            MetaNode newNode = MetaNode.builder("no-phantom-spawns", Boolean.toString(state)).build();
 
             DataMutateResult oldResult = user.data().remove(oldNode);
             DataMutateResult newResult = user.data().add(newNode);

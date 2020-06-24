@@ -6,11 +6,18 @@ depend: [LuckPerms]
 permissions:
   nomorephantoms.toggle:
     description: Players With this Permission can Toggle, Enable and Disable there own Phantom spawns.
-    default: false
+    default: op
   nomorephantoms.toggle.others:
     description: Players With this Permission can Toggle, Enable and Disable other Players Phantom spawns.
-    default: false
+    default: op
+  nomorephantoms.reload:
+    description: Players With this Permission can reload config files.
+    default: op
 commands:
   phantom:
     description: Toggle, Enable and Disable Phantom spawns.
     usage: "Usage: /phantom [username] [enable|disable]"
+  nomorephantom:
+    description: reload and get version of plugin.
+    usage: "Usage: /nomorephantom [reload]"
+    aliases: ["nmp"]
