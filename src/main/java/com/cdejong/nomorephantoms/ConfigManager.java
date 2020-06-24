@@ -3,9 +3,8 @@ package com.cdejong.nomorephantoms;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.io.File;
+import java.io.IOException;
 
 public class ConfigManager {
     private FileConfiguration fileConfig;
@@ -20,21 +19,16 @@ public class ConfigManager {
 
         if (!file.exists()) {
             try {
-                file.createNewFile();
-
-                InputStream defaultConfigStream = plugin.getResource(ymlName);
-
-                if (defaultConfigStream != null) {
-                    Files.copy(defaultConfigStream, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                }
+                file.getParentFile().mkdirs();
+                plugin.saveResource(ymlName, false);
 
             } catch (Exception e) {
-                //ignore
+                plugin.getLogger().warning("Could not create" + this.fileName + "!");
+                e.printStackTrace();
             }
         }
 
         fileConfig = YamlConfiguration.loadConfiguration(file);
-        saveConfig();
     }
 
     public FileConfiguration getConfig() {
@@ -45,7 +39,7 @@ public class ConfigManager {
         try {
             fileConfig.save(file);
         } catch (IOException e) {
-            plugin.getLogger().warning("§cCould not save §6" + this.fileName + "§c!");
+            plugin.getLogger().warning("Could not save " + this.fileName + "!");
         }
     }
 
