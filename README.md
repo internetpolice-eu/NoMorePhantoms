@@ -7,8 +7,8 @@ Toggle, Enable and Disable Phantom spawns for players.
 `nomorephantoms.reload` **:** Players with this permission can reload the config files.  
 
 ### Commands:
-`/phantom [username] [enable|disable]`
-`/nmp [reload]`
+`/phantom [username] [enable|disable]`  
+`/nmp [reload]`  
 
 ### Optional:
 LuckyPerms 5 to store phantom states in user meta.
